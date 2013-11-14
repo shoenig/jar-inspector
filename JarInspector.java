@@ -63,7 +63,13 @@ public final class JarInspector {
     }
 
     private static void processClass(Class<?> klass) {
-        Method[] methods = klass.getDeclaredMethods();
+        Method[] methods = null;
+        try {
+            methods = klass.getDeclaredMethods();
+        } catch(Throwable t) {
+            System.out.println("  FAILED getDeclaredMethods()");
+            return;
+        }
         for(Method m : methods)
             System.out.println("    " + m);
     }
