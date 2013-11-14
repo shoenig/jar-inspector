@@ -14,8 +14,8 @@ import java.lang.reflect.Method;
 
 public final class JarInspector {
 
-	public static void main(String[] args) throws IOException, InterruptedException, MalformedURLException {
-		if (args.length != 1) {
+    public static void main(String[] args) throws IOException, InterruptedException, MalformedURLException {
+        if (args.length != 1) {
             System.err.println("Usage: java JarInspector [jar file]");
             return;
         }
@@ -33,15 +33,15 @@ public final class JarInspector {
             String className = path2pkg(s);
             System.out.println("className: " + className);
 
-                Class<?> c = extractClassFromJar(jf, className);
-                if (c != null) {
-                    System.out.println("  EXTRACTED: " + c);
-                    processClass(c);
-                }
-                else
-                    System.out.println("  FAILED");
+            Class<?> c = extractClassFromJar(jf, className);
+            if (c != null) {
+                System.out.println("  EXTRACTED: " + c);
+                processClass(c);
+            }
+            else
+                System.out.println("  FAILED");
         }        
-	}
+    }
 
     private static File getJarFile(String jarname) {
         File f = new File(jarname);
@@ -49,7 +49,7 @@ public final class JarInspector {
             throw new IllegalArgumentException(jarname + " does not exist");
         return f;
     }
-	
+
     private static Class<?> extractClassFromJar(File jar, String klass) throws MalformedURLException {
         URL jurl = jar.toURI().toURL();
         URL[] jurls = new URL[]{jurl};
